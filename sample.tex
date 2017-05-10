@@ -11,7 +11,8 @@
 \usepackage[dvipdfmx]{graphicx}
 \usepackage{verbatim}
 \usepackage{amsmath}
-\usepackage{subcaption}
+\usepackage{subfig}
+% \usepackage{subcaption}
 \usepackage{textcomp}
 \usepackage{url}
 \setcounter{tocdepth}{\maxdimen} %subsubsectionまで目次を表示する
@@ -106,16 +107,16 @@ ptex2pdf -l -ot -kanji=utf8 "%~dpnx1"
 図は次のように書く。ファイルは相対パスで書くことが出来る。拡張子の前の.と間違えるので、パスの中に.を含めることはできない。場所はラフにしか指定することができない。\verb|[htbp]|はh=その場所に、t=ページの上部に、b=ページの下部に、p=独立したページにそれぞれ表示するよう試す。labelはcaptionの後に指定する必要がある。
 \begin{verbatim}
 \begin{figure}[htbp]
-  \centering
-  \includegraphics[angle=270,width=70mm]{./figs/result.pdf}
-  \caption{テスト画像, width=70mm}\label{fig:test_image}
+\centering
+\includegraphics[width=70mm]{./figs/result2.pdf}
+\caption{テスト画像, width=70mm\label{fig:test_image}}
 \end{figure}
 \end{verbatim}
 これを実際に描くと図~\ref{fig:test_image}のようになる。
 \begin{figure}[htbp]
-  \centering
-  \includegraphics[angle=270,width=70mm]{./figs/result.pdf}
-  \caption{テスト画像, width=70mm}\label{fig:test_image}
+\centering
+\includegraphics[width=70mm]{./figs/result2.pdf}
+\caption{テスト画像, width=70mm\label{fig:test_image}}
 \end{figure}
 画像のサイズの指定方法は、いくつかの方法がある。
 \begin{verbatim}
@@ -124,77 +125,53 @@ width=1.0\textwidth テキスト幅からの倍率で指定する方法
 scale=0.2 画像やPDFファイルのサイズからの倍率を指定する方法
 \end{verbatim}
 
-当方の環境だとPDFは270度回転でいつも見ている角度になった。なのでPDFファイルの場合は\verb|angle=270|が必要かもしれない。
+TeX Live 2016を使いptex2pdfでコンパイルするとき、PDFのバージョンが1.6だと90度回転してしまうことがある。pdflatexではそれは起こらない。回転した場合は、\verb|width=70mm|などの前に、\verb|angle=270,|を入れると良い。
 
 
-複数の画像を一つの図に表示させる方法がある。図~\ref{fig:various_angle_multi_images}で例を描画した。ソースはsample.texを参照されたし。
+複数の画像を一つの図に表示させる方法がある。図~\ref{fig:multi_images}で例を描画した。ソース次のとおり。
+\begin{verbatim}
+\begin{figure}[htbp]
+\centering
+\subfloat[0~deg]{\includegraphics[angle=0,scale=0.2]{./figs/result2.pdf}}
+\hspace{1em}
+\subfloat[45~deg]{\includegraphics[angle=45,scale=0.2]{./figs/result2.pdf}}
+\hspace{1em}
+\subfloat[90~deg]{\includegraphics[angle=90,scale=0.2]{./figs/result2.pdf}}
+\caption{画像を回転させたり、複数の画像を表示する方法\label{fig:multi_images}}
+\end{figure}
+\end{verbatim}
 
 \begin{figure}[htbp]
- \begin{minipage}[b]{0.32\linewidth}
-  \centering
-  \includegraphics[angle=0,scale=0.2]{./figs/result.pdf}
-  \subcaption{0deg}\label{0deg}
- \end{minipage}
- \begin{minipage}[b]{0.32\linewidth}
-  \centering
-  \includegraphics[angle=45,scale=0.2]{./figs/result.pdf}
-  \subcaption{45deg}\label{45deg}
- \end{minipage}
- \begin{minipage}[b]{0.32\linewidth}
-  \centering
-  \includegraphics[angle=90,scale=0.2]{./figs/result.pdf}
-  \subcaption{90deg}\label{90deg}
- \end{minipage}\\
- \begin{minipage}[b]{0.32\linewidth}
-  \centering
-  \includegraphics[angle=180,scale=0.2]{./figs/result.pdf}
-  \subcaption{180deg}\label{180deg}
- \end{minipage}
- \begin{minipage}[b]{0.32\linewidth}
-  \centering
-  \includegraphics[angle=270,scale=0.2]{./figs/result.pdf}
-  \subcaption{270deg}\label{270deg}
- \end{minipage}
- \caption{画像を回転させたり、複数の画像を表示する方法}\label{fig:various_angle_multi_images}
+\centering
+\subfloat[0~deg]{\includegraphics[angle=0,scale=0.2]{./figs/result2.pdf}}
+\hspace{1em}
+\subfloat[45~deg]{\includegraphics[angle=45,scale=0.2]{./figs/result2.pdf}}
+\hspace{1em}
+\subfloat[90~deg]{\includegraphics[angle=90,scale=0.2]{./figs/result2.pdf}}
+\caption{画像を回転させたり、複数の画像を表示する方法\label{fig:multi_images}}
 \end{figure}
 
 グラフを作るときは、論文化しやすいようにPDFファイルで保存しておくと良い。他の形式ももちろん使える。図~\ref{fig:various_extension}で例を描画した。それぞれ異なる拡張子で表示してみた。
 
 \begin{figure}[htbp]
- \begin{minipage}[b]{0.32\linewidth}
-  \centering
-  \includegraphics[angle=0,width=1.0\textwidth]{./figs/result.png}
-  \subcaption{PNG}
- \end{minipage}
- \begin{minipage}[b]{0.32\linewidth}
-  \centering
-  \includegraphics[angle=0,width=1.0\textwidth]{./figs/result.eps}
-  \subcaption{EPS}
- \end{minipage}
- \begin{minipage}[b]{0.32\linewidth}
-  \centering
-  \includegraphics[angle=270,width=1.0\textwidth]{./figs/result.pdf}
-  \subcaption{PDF}
- \end{minipage}\\
- \caption{png, eps, pdfで画像を表示する方法}\label{fig:various_extension}
+\centering
+\subfloat[PNG]{\includegraphics[width=0.32\textwidth]{./figs/result.png}}
+\subfloat[45~deg]{\includegraphics[width=0.32\textwidth]{./figs/result.eps}}
+\subfloat[90~deg]{\includegraphics[width=0.32\textwidth]{./figs/result2.pdf}}
+\caption{png, eps, pdfで画像を表示する方法\label{fig:various_extension}}
 \end{figure}
 
 複数ページを持つPDFは、ページ番号を指定しながら表示させることが可能。図~\ref{fig:multi_page}で例を描画した。図~\ref{fig:page1}は1ページ目、図~\ref{fig:page2}は2ページ目。
 
 \begin{figure}[htbp]
- \begin{minipage}[b]{0.5\linewidth}
-  \centering
-  \includegraphics[angle=270,page=1,width=1.0\textwidth]{./figs/multi_page.pdf}
-  \subcaption{multi\_page.pdfの1ページ目}\label{fig:page1}
- \end{minipage}
- \begin{minipage}[b]{0.32\linewidth}
-  \centering
-  \includegraphics[angle=270,page=2,width=1.0\textwidth]{./figs/multi_page.pdf}
-  \subcaption{multi\_page.pdfの2ページ目}\label{fig:page2}
- \end{minipage}
- \caption{複数ページを持つPDFの一部を表示させる方法。}\label{fig:multi_page}
+\centering
+\subfloat[multi\_page.pdfの1ページ目\label{fig:page1}]{\includegraphics[angle=270,page=1,width=0.5\textwidth]{./figs/multi_page.pdf}}
+\subfloat[multi\_page.pdfの2ページ目\label{fig:page2}]{\includegraphics[angle=270,page=2,width=0.32\textwidth]{./figs/multi_page.pdf}}
+\caption{複数ページを持つPDFの一部を表示させる方法。\label{fig:multi_page}}
 \end{figure}
-\newpage
+
+\clearpage
+
 \section{テーブル}
 テーブルは表~\ref{tab:emulsion_telescope}のように書く。詳細はググって。
 \begin{table}[htbp]
@@ -211,8 +188,7 @@ scale=0.2 画像やPDFファイルのサイズからの倍率を指定する方�
 		不感時間		&26.5~$\mu$sec (readout time) & 0\% \\
 		\hline
 	\end{tabular}
-\caption{GRAINEエマルション望遠鏡の基本性能とFermi-LATとの比較}
-\label{tab:emulsion_telescope}
+\caption{GRAINEエマルション望遠鏡の基本性能とFermi-LATとの比較\label{tab:emulsion_telescope}}
 \end{table}
 \newpage
 \section{リスト}
@@ -245,14 +221,16 @@ scale=0.2 画像やPDFファイルのサイズからの倍率を指定する方�
  \item [水洗+脱塩]\mbox{} \\水洗と脱塩とは、
 \end{description}
 \subsection{enumerateを使う方法}
-原子核乳剤の主な原料は・・・
+原子核乳剤の主な原料は・・・番号を1番以外から始めたいときは\verb|\setcounter{enumi}{X}|を使う。
 \begin{verbatim}
 \begin{enumerate}
+\setcounter{enumi}{10}
  \item 硝酸銀 (高い)
  \item 臭化カリウム
 \end{enumerate}
 \end{verbatim}
 \begin{enumerate}
+\setcounter{enumi}{10}
  \item 硝酸銀 (高い)
  \item 臭化カリウム
 \end{enumerate}
@@ -392,7 +370,8 @@ e&=|\!| 負の空白
 ミクロン $\mu m$ = \verb|$\mu m$|\\
 数式中で斜体にしない $\rm{mm}$ = \verb|$\rm{mm}$|\\
 ニュートリノ振動 $\nu_{\mu} \rightarrow \nu_{\tau}$ = \verb|$\nu_{\mu} \rightarrow \nu_{\tau}$|\\
-臭化銀の沈殿 $\rm{KBr+AgNO_3\rightarrow AgBr\downarrow+KNO_3}$ = \verb|$\rm{KBr+AgNO_3\rightarrow AgBr\downarrow+KNO_3}$|
+臭化銀の沈殿 $\rm{KBr+AgNO_3\rightarrow AgBr\downarrow+KNO_3}$ = \verb|$\rm{KBr+AgNO_3\rightarrow AgBr\downarrow+KNO_3}$|\\
+ハイパー核$_{\Lambda\Lambda}^{~6}$He = \verb|$_{\Lambda\Lambda}^{~6}$He|\\
 \subsection{Tips}
 Wikipediaの数式は\LaTeX  の数式表記になっているので、欲しい関数は編集からソースを見るとよい。一粒子系のシュレーディンガー方程式もWikipediaからのパクりである。
 \newpage
@@ -417,6 +396,10 @@ Wikipediaの数式は\LaTeX  の数式表記になっているので、欲しい
 \input{abst}
 \include{abst}
 \end{verbatim}
+
+\subsection{丸付き文字}
+\textcircled{\scriptsize 1} = \verb|\textcircled{\scriptsize 1}|\\
+科研費などで次のようにも書ける。\verb|\raise0.2ex\hbox{\textcircled{\scriptsize{3}}}|
 
 \subsection{一覧}
 テーブルリスト\verb|\listoftables|、図のリスト\verb|\listoffigures|、参照はややこしいのでソースをみてほしい。
