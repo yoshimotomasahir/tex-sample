@@ -9,12 +9,14 @@
 \usepackage[top=30mm,bottom=30mm,left=25mm,right=25mm]{geometry}% 幅160mmの余り
 \usepackage{url} %URLを表示する
 \usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
 \usepackage{verbatim}
 \usepackage{amsmath}
 \usepackage{subfig}
 % \usepackage{subcaption}
 \usepackage{textcomp}
 \usepackage{url}
+\usepackage{color}
 \setcounter{tocdepth}{\maxdimen} %subsubsectionまで目次を表示する
 \bibliographystyle{junsrt} %参照のスタイル
 
@@ -102,8 +104,9 @@ ptex2pdf -l -ot -kanji=utf8 "%~dpnx1"
  \item B4--M2の3年間所属しました。(範囲を表すハイフン) \verb|--|
  \item $(2016-2014+1)$年間所属しました。(引き算) \verb|$-$|
 \end{itemize}
-\newpage
+\clearpage
 \section{図の書き方}
+\subsection{図の基本}
 図は次のように書く。ファイルは相対パスで書くことが出来る。拡張子の前の.と間違えるので、パスの中に.を含めることはできない。場所はラフにしか指定することができない。\verb|[htbp]|はh=その場所に、t=ページの上部に、b=ページの下部に、p=独立したページにそれぞれ表示するよう試す。labelはcaptionの後に指定する必要がある。
 \begin{verbatim}
 \begin{figure}[htbp]
@@ -127,7 +130,7 @@ scale=0.2 画像やPDFファイルのサイズからの倍率を指定する方�
 
 TeX Live 2016を使いptex2pdfでコンパイルするとき、PDFのバージョンが1.6だと90度回転してしまうことがある。pdflatexではそれは起こらない。回転した場合は、\verb|width=70mm|などの前に、\verb|angle=270,|を入れると良い。
 
-
+\subsection{複数の図を表示}
 複数の画像を一つの図に表示させる方法がある。図~\ref{fig:multi_images}で例を描画した。ソース次のとおり。
 \begin{verbatim}
 \begin{figure}[htbp]
@@ -151,14 +154,18 @@ TeX Live 2016を使いptex2pdfでコンパイルするとき、PDFのバージ�
 \caption{画像を回転させたり、複数の画像を表示する方法\label{fig:multi_images}}
 \end{figure}
 
-グラフを作るときは、論文化しやすいようにPDFファイルで保存しておくと良い。他の形式ももちろん使える。図~\ref{fig:various_extension}で例を描画した。それぞれ異なる拡張子で表示してみた。
+
+\subsection{図の表示の応用}
+
+グラフを作るときは、論文化しやすいようにPDFファイルで保存しておくと良い。他の形式ももちろん使える。図~\ref{fig:various_img}で例を描画した。それぞれ異なる拡張子で表示してみた。
+ちなみに、png、eps、jpgを使うときは\verb|\usepackage[dvipdfmx]{color}|が必要。
 
 \begin{figure}[htbp]
 \centering
-\subfloat[PNG]{\includegraphics[width=0.32\textwidth]{./figs/result.png}}
-\subfloat[45~deg]{\includegraphics[width=0.32\textwidth]{./figs/result.eps}}
-\subfloat[90~deg]{\includegraphics[width=0.32\textwidth]{./figs/result2.pdf}}
-\caption{png, eps, pdfで画像を表示する方法\label{fig:various_extension}}
+\subfloat[png]{\includegraphics[scale=0.2]{./figs/result.png}}
+\subfloat[eps]{\includegraphics[scale=0.2]{./figs/result.eps}}
+\subfloat[jpg]{\includegraphics[scale=0.2]{./figs/result.jpg}}
+\caption{png, eps, jpgで画像を表示する方法\label{fig:various_img}}
 \end{figure}
 
 複数ページを持つPDFは、ページ番号を指定しながら表示させることが可能。図~\ref{fig:multi_page}で例を描画した。図~\ref{fig:page1}は1ページ目、図~\ref{fig:page2}は2ページ目。
@@ -166,6 +173,7 @@ TeX Live 2016を使いptex2pdfでコンパイルするとき、PDFのバージ�
 \begin{figure}[htbp]
 \centering
 \subfloat[multi\_page.pdfの1ページ目\label{fig:page1}]{\includegraphics[angle=270,page=1,width=0.5\textwidth]{./figs/multi_page.pdf}}
+\hspace{1em}
 \subfloat[multi\_page.pdfの2ページ目\label{fig:page2}]{\includegraphics[angle=270,page=2,width=0.32\textwidth]{./figs/multi_page.pdf}}
 \caption{複数ページを持つPDFの一部を表示させる方法。\label{fig:multi_page}}
 \end{figure}
@@ -372,6 +380,10 @@ e&=|\!| 負の空白
 ニュートリノ振動 $\nu_{\mu} \rightarrow \nu_{\tau}$ = \verb|$\nu_{\mu} \rightarrow \nu_{\tau}$|\\
 臭化銀の沈殿 $\rm{KBr+AgNO_3\rightarrow AgBr\downarrow+KNO_3}$ = \verb|$\rm{KBr+AgNO_3\rightarrow AgBr\downarrow+KNO_3}$|\\
 ハイパー核$_{\Lambda\Lambda}^{~6}$He = \verb|$_{\Lambda\Lambda}^{~6}$He|\\
+レイリーの基準$\delta x = 0.61\frac{\lambda}{\rm{NA}}$ = \verb|$\delta x = 0.61\frac{\lambda}{\rm{NA}}$|\\
+ベクトル $\overrightarrow{ma}$ = \verb|$\overrightarrow{ma}$|\\
+三角関数 $\sin \cos \tan$ = \verb|$\sin \cos \tan$|
+
 \subsection{Tips}
 Wikipediaの数式は\LaTeX  の数式表記になっているので、欲しい関数は編集からソースを見るとよい。一粒子系のシュレーディンガー方程式もWikipediaからのパクりである。
 \newpage
@@ -400,6 +412,13 @@ Wikipediaの数式は\LaTeX  の数式表記になっているので、欲しい
 \subsection{丸付き文字}
 \textcircled{\scriptsize 1} = \verb|\textcircled{\scriptsize 1}|\\
 科研費などで次のようにも書ける。\verb|\raise0.2ex\hbox{\textcircled{\scriptsize{3}}}|
+
+\subsection{文章を強調する}
+\noindent
+\underline{下線を引いたり} = \verb|\underline{下線を引いたり}|\\
+{\bf 太字にしたり} = \verb|{\bf 太字にしたり}|\\
+\colorbox[named]{Black}{\color[named]{White}{\bf 黒背景にしたり}} = \verb|\colorbox[named]{Black}{\color[named]{White}{\bf 黒背景にしたり}}|\\
+科研費や学振の場合、白黒印刷されるらしいので、基本的に白黒で強調すると良いだろう。 下線はその途中で改行できないので注意。
 
 \subsection{一覧}
 テーブルリスト\verb|\listoftables|、図のリスト\verb|\listoffigures|、参照はややこしいのでソースをみてほしい。
