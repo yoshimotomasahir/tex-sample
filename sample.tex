@@ -181,23 +181,42 @@ TeX Live 2016を使いptex2pdfでコンパイルするとき、PDFのバージ�
 \clearpage
 
 \section{テーブル}
-テーブルは表~\ref{tab:emulsion_telescope}のように書く。詳細はググって。
+テーブルは、次の記述で表~\ref{tab:emulsion_telescope}のようになる。詳細はググって。
+\begin{verbatim}
 \begin{table}[htbp]
 \centering
-	\begin{tabular}{r|c|l}
-		右寄せ&中央寄せ&	左寄せ			\\
-			&Fermi-LAT&	GRAINE			\\
-		\hline
-		\hline
-		角度分解能＠100~MeV	&105~mrad (6.0$^\circ$ ) &17~mrad (1.0$^\circ$ ) \\
-		＠1~GeV&16~mrad(0.90$^\circ$ )& 1.7~mrad(0.10$^\circ$) \\
-		検出エネルギー範囲		&20--300~MeV		&10~MeV--100~GeV \\
-		偏光感度		&無		&有 \\
-		不感時間		&26.5~$\mu$sec (readout time) & 0\% \\
-		\hline
-	\end{tabular}
+\begin{tabular}{r||c|l}
+右寄せ&中央寄せ&左寄せ\\
+     &Fermi-LAT&GRAINE\\
+\hline
+\hline
+角度分解能＠100~MeV& 105~mrad (6.0$^\circ$ )   & 17~mrad (1.0$^\circ$ ) \\
+＠1~GeV           & 16~mrad(0.90$^\circ$ )    & 1.7~mrad(0.10$^\circ$) \\
+検出エネルギー範囲 &20--300~MeV                 & 10~MeV--100~GeV        \\
+偏光感度          &無                          &有                      \\
+不感時間          &26.5~$\mu$sec (readout time)& 0\%                    \\
+\hline
+\end{tabular}
 \caption{GRAINEエマルション望遠鏡の基本性能とFermi-LATとの比較\label{tab:emulsion_telescope}}
 \end{table}
+\end{verbatim}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{r||c|l}
+右寄せ&中央寄せ&左寄せ\\
+     &Fermi-LAT&GRAINE\\
+\hline
+\hline
+角度分解能＠100~MeV& 105~mrad (6.0$^\circ$ )   & 17~mrad (1.0$^\circ$ ) \\
+＠1~GeV           & 16~mrad(0.90$^\circ$ )    & 1.7~mrad(0.10$^\circ$) \\
+検出エネルギー範囲 &20--300~MeV                 & 10~MeV--100~GeV        \\
+偏光感度          &無                          &有                      \\
+不感時間          &26.5~$\mu$sec (readout time)& 0\%                    \\
+\hline
+\end{tabular}
+\caption{GRAINEエマルション望遠鏡の基本性能とFermi-LATとの比較\label{tab:emulsion_telescope}}
+\end{table}
+
 \newpage
 \section{リスト}
 幾つかのリストを書く方法を示す。基本的にググれば全ての答えを得られる。itemize, enumerate, descriptionがよく使われる。
