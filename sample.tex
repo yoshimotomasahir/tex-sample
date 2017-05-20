@@ -417,9 +417,9 @@ Wikipediaの数式は\LaTeX  の数式表記になっているので、欲しい
 \subsection{参照}
 論文の参照は\verb|\cite{}|、図、テーブル、数式、セクションの参照は\verb|\ref{}|である。
 \begin{verbatim}
-アクライト~\cite{acrylite}、OPERAの論文~\cite{Agafonova:2014ptn}、頻出表現\ref{sec:frequent}
+HTSの論文~\cite{Yoshimoto:2017ufm}、論文を探すにはinspire~\cite{inspire}、頻出表現はここ\ref{sec:frequent}
 \end{verbatim}
-アクライト~\cite{acrylite}、OPERAの論文~\cite{Agafonova:2014ptn}、頻出表現\ref{sec:frequent}
+HTSの論文~\cite{Yoshimoto:2017ufm}、論文を探すにはinspire~\cite{inspire}、頻出表現はここ\ref{sec:frequent}
 
 \subsection{他のページを読み込む}
 別のファイルに中身を書いておいて、それをメインのファイルに統合することができる。inputはそのまま代入され、includeは読み込んだファイルの直前で改ページされる。使い方次第。拡張子\verb|.tex|は必要ない
@@ -447,17 +447,14 @@ Wikipediaの数式は\LaTeX  の数式表記になっているので、欲しい
 \listoffigures %図のリスト
 
 \begin{thebibliography}{99}
-\bibitem{acrylite}
-\url{https://www.mrc.co.jp/acrylite/spec/index.html}
-%\cite{Agafonova:2014ptn}
-\bibitem{Agafonova:2014ptn}
-  N.~Agafonova {\it et al.} [OPERA Collaboration],
-  %``Observation of tau neutrino appearance in the CNGS beam with the OPERA experiment,''
-  PTEP {\bf 2014} (2014) no.10,  101C01
-  doi:10.1093/ptep/ptu132
-  [arXiv:1407.3513 [hep-ex]].
-  %%CITATION = doi:10.1093/ptep/ptu132;%%
-  %44 citations counted in INSPIRE as of 23 Nov 2016
+\bibitem{inspire}
+\url{http://inspirehep.net/}
+%\cite{Yoshimoto:2017ufm}
+\bibitem{Yoshimoto:2017ufm} 
+  M.~Yoshimoto, T.~Nakano, R.~Komatani and H.~Kawahara,
+  %``Nuclear emulsion readout system HTS aiming at scanning an area of one thousand square meters,''
+  arXiv:1704.06814 [physics.ins-det].
+  %%CITATION = ARXIV:1704.06814;%%
 \end{thebibliography}
 
 \end{document}
