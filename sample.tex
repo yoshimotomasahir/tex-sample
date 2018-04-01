@@ -1,8 +1,8 @@
 \documentclass[a4j]{jsarticle}
 %
 % 古いパッケージを自動チェック
-\RequirePackage[l2tabu, orthodox]{nag}
-\usepackage[all, warning]{onlyamsmath}
+% \RequirePackage[l2tabu, orthodox]{nag}
+% \usepackage[all, warning]{onlyamsmath}
 % 古いパッケージを自動チェック
 
 %\usepackage{subcaption} %図の中に複数の図を入れる
@@ -97,11 +97,25 @@ ptex2pdf -l -ot -kanji=utf8 "%~dpnx1"
 \verb|\noindent| は文頭でインデントしたくない時に使う\\
 \verb|\newpage| で改ページ、\verb|\clearpage| で全てのグラフ等を出力した後に改ページ
 \subsection{ハイフンとダッシュ}
-使い方を間違えやすいのがハイフンとダッシュ。単語をつなげる時はハイフン1つ、範囲を表す時はハイフン2つ、数式中はハイフン1つでマイナスになる。範囲を表すのに～を使わない方がよい。
+使い方を間違えやすいのがハイフンとダッシュ。
+ハイフンとenダッシュと、emダッシュの3つがある。
 
+\subsubsection{ハイフン}
+ハイフンを一つで表現する。単語の途中で改行する場合(ただし \LaTeX  では自動でしてくれるので我々は何もしなくて良い)、または単語をつなげて形容詞を作る時。
+
+\subsubsection{en ダッシュ}
+ハイフンを二つで表現する。範囲を表す時に用いる。
+範囲を表すのに～を使わない方がよい。
+
+\subsubsection{em ダッシュ}
+ハイフン三つで表現する。文章中に句を挿入する時に用いる。前後にスペースを入れない。
+
+\subsubsection{使用例}
 \begin{itemize}
- \item 私はF-labに所属しました。(単語をつなげるハイフン) \verb|-|
- \item B4--M2の3年間所属しました。(範囲を表すハイフン) \verb|--|
+ \item I am twenty-two years old. (単語をつなげるハイフン) \verb|-|
+ \item 〒770--8506 (電話や郵便番号のハイフン)  \verb|--|
+ \item B4 -- M2の3年間所属しました。(範囲を表すen ダッシュ) \verb|--|
+ \item The optics---i.e., objective lens, illuminator, and beam splitter---were designed. (挿入句を表すem ダッシュ) \verb|---|
  \item $(2016-2014+1)$年間所属しました。(引き算) \verb|$-$|
 \end{itemize}
 \clearpage
