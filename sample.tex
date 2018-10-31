@@ -10,6 +10,8 @@
 \usepackage{url} %URLを表示する
 \usepackage[dvipdfmx]{graphicx}
 \usepackage[dvipdfmx]{color}
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
 \usepackage{verbatim}
 \usepackage{amsmath}
 \usepackage{subfig}
@@ -20,10 +22,10 @@
 \setcounter{tocdepth}{\maxdimen} %subsubsectionまで目次を表示する
 \bibliographystyle{junsrt} %参照のスタイル
 
-\title{\vspace{60mm} \LARGE 卒業論文\vspace{10mm}\\LaTeXでの論文の書き方(論文のタイトル)}
-\author{\Large 岐阜大学 教育学部 \\ \vspace{5mm}
-\Large 理科教育講座 物理学 \\ \vspace{5mm}
-\LARGE おなまえ}
+\title{\vspace{60mm} \large 卒業論文\vspace{10mm}\\ \LARGE\LaTeX での論文の書き方(論文のタイトル)\vspace{5mm}}
+\author{\large 岐阜大学 教育学部 \\ \vspace{5mm}
+\large 理科教育講座 物理学 \\ \vspace{5mm}
+\large おなまえ}
 \date{最終更新 \today}
 
 % ドキュメント
@@ -36,14 +38,13 @@
 \newpage %新しいページ
 \section*{アブストラクト}
 
-\LaTeX とは、テキストベースで論文等を執筆するための組み版システムである。Microsoft Wordに対する利点は、図や表を入れる際に配置などを気にしなくても良いこと、参考文献などの管理がしやすいこと、数式が美しく表現できることなどが挙げられる。対して欠点としては、Microsoft Wordよりも取っつきにくいこと、ある程度はコマンドを覚える必要があること、そして卒業した後にあまり使う機会がないということが挙げられる。私は、執筆にとにかく集中できるという理由で \LaTeX を使っているが、個人の好みを押しつけるつもりはない。
+\LaTeX とは、テキストベースで論文等を執筆するための組み版システムである。Microsoft Wordに対する利点は、図や表を入れる際に配置などを気にしなくても良いこと、参考文献などの管理がしやすいこと、数式が美しく表現できることなどが挙げられる。対して欠点としては、Microsoft Wordよりも取っつきにくいこと、ある程度はコマンドを覚える必要があること、そして卒業した後にあまり使う機会がないということが挙げられる。私は執筆にとにかく集中できるという理由で \LaTeX を使っているが、個人の好みを押しつけるつもりはない。
 
 この文章は、修士論文と卒業論文を\LaTeX で書く人のために、\LaTeX の使い方を何度もググる必要がないようにまとめた文章である。論文としての書き方は厳密に正しくはないので注意せよ。
 
-\LaTeX のインストールは \url{https://www.tug.org/texlive/acquire-netinstall.html} から install-tl-windows.exe をダウンロードし実行する。オプションの変更は必要ない。6GB以上のディスクサイズを必要とし、インストールに時間がかかるので注意せよ。
+Windowsユーザー向けに、\LaTeX のインストールは \url{https://www.tug.org/texlive/acquire-netinstall.html} から install-tl-windows.exe をダウンロードし実行する。オプションの変更は必要ない。6GB以上のディスクサイズを必要とし、インストールに時間がかかるので注意せよ。
 
-論文の編集は Visual Code (エディタ) + LaTeX Workshop (Visual Code内の拡張機能) を使うと便利である。Windowsの人は、PDF表示用にSumatraPDFをインストールすることをお勧めする。
-Visual Codeの設定ファイル (User Settings) に以下のコードを書いておけば自動的にコンパイルされる。
+論文の編集は Visual Studio Code (エディタ) + LaTeX Workshop (Visual Code内の拡張機能) を使うと便利である。Visual Codeの設定ファイル (User Settings) に以下のコードを書いておけば自動的にコンパイルされる。ちなみに、ptex2pdfを2度実行しているのは目次や参考文献などのリンクを2度目で生成しているからである。
 \begin{verbatim}
 "latex-workshop.latex.tools": [
     {
@@ -64,16 +65,26 @@ Visual Codeの設定ファイル (User Settings) に以下のコードを書い�
     {
         "name": "ptex2pdf",
         "tools": [
+            "ptex2pdf",
             "ptex2pdf"
         ]
     }
 ],
 \end{verbatim}
 
+Windowsユーザーの方は、PDF表示用にSumatraPDFをインストールすることをお勧めする。Visual Studio Code と SumatraPDFの組み合わせでは、SumatraPDFのオプションの逆順検索コマンドラインの設定で、\verb|"C:\Program Files\Microsoft VS Code\code.exe" -g "%f:%l"|と書いておくと、PDFファイルの文章をクリックするとテキストファイルの元の文章の場所に飛ぶことができる。なお、\verb|code.exe|のパスは上記の限りではないので注意されたし。
+
 bibtexを使う場合は \verb|pbibtex -kanji=utf8 filename| のようにコマンドを叩く。\verb|.tex| は必要ない。
 
-学科や研究室において解説講座を適宜開催するので、その際によく質問して理解して、快適な執筆作業を構築しよう。
+個人的に、学科や研究室において解説講座を適宜開催するので、その際によく質問して、よく理解して、快適な執筆作業を構築しよう。
  
+\section*{講習会について}
+
+講習会に参加する前までに、\LaTeX のインストールを完了させておくことを期待する。インストールには時間がかかるため、講習中にインストールを完了させるのは難しいだろう。
+
+\section*{このファイルについて}
+このファイルを使って論文を書くことをお勧めする。私がお勧めする設定は網羅しているつもりである。
+
 \section*{著者について}
 
 吉本 雅浩 (岐阜大学 教育学部)
@@ -142,14 +153,14 @@ GNU General Public License (GNU GPL)
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=70mm]{./figs/result2.pdf}
-\caption{テスト画像, width=70mm\label{fig:test_image}}
+\caption{幅70mmで画像を表示する方法\label{fig:test_image}}
 \end{figure}
 \end{verbatim}
 これを実際に描くと図~\ref{fig:test_image}のようになる。
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=70mm]{./figs/result2.pdf}
-\caption{テスト画像, width=70mm\label{fig:test_image}}
+\caption{幅70mmで画像を表示する方法\label{fig:test_image}}
 \end{figure}
 画像のサイズの指定方法は、いくつかの方法がある。
 \begin{verbatim}
@@ -157,8 +168,6 @@ width=100mm 幅をミリメートルで指定する方法
 width=1.0\textwidth テキスト幅からの倍率で指定する方法
 scale=0.2 画像やPDFファイルのサイズからの倍率を指定する方法
 \end{verbatim}
-
-TeX Live 2016を使いptex2pdfでコンパイルするとき、PDFのバージョンが1.6だと90度回転してしまうことがある。pdflatexではそれは起こらない。回転した場合は、\verb|width=70mm|などの前に、\verb|angle=270,|を入れると良い。
 
 \subsection{複数の図を表示}
 複数の画像を一つの図に表示させる方法がある。図~\ref{fig:multi_images}で例を描画した。ソース次のとおり。
@@ -170,7 +179,7 @@ TeX Live 2016を使いptex2pdfでコンパイルするとき、PDFのバージ�
 \subfloat[45~deg]{\includegraphics[angle=45,scale=0.2]{./figs/result2.pdf}}
 \hspace{1em}
 \subfloat[90~deg]{\includegraphics[angle=90,scale=0.2]{./figs/result2.pdf}}
-\caption{画像を回転させたり、複数の画像を表示する方法\label{fig:multi_images}}
+\caption{画像を回転させたり、複数の画像を並べたりする方法\label{fig:multi_images}}
 \end{figure}
 \end{verbatim}
 
@@ -181,7 +190,7 @@ TeX Live 2016を使いptex2pdfでコンパイルするとき、PDFのバージ�
 \subfloat[45~deg]{\includegraphics[angle=45,scale=0.2]{./figs/result2.pdf}}
 \hspace{1em}
 \subfloat[90~deg]{\includegraphics[angle=90,scale=0.2]{./figs/result2.pdf}}
-\caption{画像を回転させたり、複数の画像を表示する方法\label{fig:multi_images}}
+\caption{画像を回転させたり、複数の画像を並べたりする方法\label{fig:multi_images}}
 \end{figure}
 
 
@@ -195,7 +204,7 @@ TeX Live 2016を使いptex2pdfでコンパイルするとき、PDFのバージ�
 \subfloat[png]{\includegraphics[scale=0.2]{./figs/result.png}}
 \subfloat[eps]{\includegraphics[scale=0.2]{./figs/result.eps}}
 \subfloat[jpg]{\includegraphics[scale=0.2]{./figs/result.jpg}}
-\caption{png, eps, jpgで画像を表示する方法\label{fig:various_img}}
+\caption{png, eps, jpgの画像を表示する方法\label{fig:various_img}}
 \end{figure}
 
 複数ページを持つPDFは、ページ番号を指定しながら表示させることが可能。図~\ref{fig:multi_page}で例を描画した。図~\ref{fig:page1}は1ページ目、図~\ref{fig:page2}は2ページ目。
@@ -205,7 +214,7 @@ TeX Live 2016を使いptex2pdfでコンパイルするとき、PDFのバージ�
 \subfloat[multi\_page.pdfの1ページ目\label{fig:page1}]{\includegraphics[angle=270,page=1,width=0.5\textwidth]{./figs/multi_page.pdf}}
 \hspace{1em}
 \subfloat[multi\_page.pdfの2ページ目\label{fig:page2}]{\includegraphics[angle=270,page=2,width=0.32\textwidth]{./figs/multi_page.pdf}}
-\caption{複数ページを持つPDFの一部を表示させる方法。\label{fig:multi_page}}
+\caption{複数ページを持つPDFの一部を表示させる方法\label{fig:multi_page}}
 \end{figure}
 
 \clearpage
@@ -227,7 +236,7 @@ TeX Live 2016を使いptex2pdfでコンパイルするとき、PDFのバージ�
 不感時間          &26.5~$\mu$sec (readout time)& 0\%                    \\
 \hline
 \end{tabular}
-\caption{GRAINEエマルション望遠鏡の基本性能とFermi-LATとの比較\label{tab:emulsion_telescope}}
+\caption{表の例: GRAINEエマルション望遠鏡の基本性能とFermi-LATとの比較\label{tab:emulsion_telescope}}
 \end{table}
 \end{verbatim}
 \begin{table}[htbp]
@@ -244,7 +253,7 @@ TeX Live 2016を使いptex2pdfでコンパイルするとき、PDFのバージ�
 不感時間          &26.5~$\mu$sec (readout time)& 0\%                    \\
 \hline
 \end{tabular}
-\caption{GRAINEエマルション望遠鏡の基本性能とFermi-LATとの比較\label{tab:emulsion_telescope}}
+\caption{表の例: GRAINEエマルション望遠鏡の基本性能とFermi-LATとの比較\label{tab:emulsion_telescope}}
 \end{table}
 
 \newpage
@@ -431,62 +440,72 @@ e&=|\!| 負の空白
 ハイパー核$_{\Lambda\Lambda}^{~6}$He = \verb|$_{\Lambda\Lambda}^{~6}$He|\\
 レイリーの基準$\delta x = 0.61\frac{\lambda}{\rm{NA}}$ = \verb|$\delta x = 0.61\frac{\lambda}{\rm{NA}}$|\\
 ベクトル $\overrightarrow{ma}$ = \verb|$\overrightarrow{ma}$|\\
-三角関数 $\sin \cos \tan$ = \verb|$\sin \cos \tan$|
+三角関数 $\sin\theta \cos\phi \tan\alpha$ = \verb|$\sin\theta \cos\phi \tan\alpha$|
 
 \subsection{Tips}
-Wikipediaの数式は\LaTeX  の数式表記になっているので、欲しい関数は編集からソースを見るとよい。一粒子系のシュレーディンガー方程式もWikipediaからのパクりである。
+Wikipediaの数式は\LaTeX の数式表記になっているので、欲しい関数は編集からソースを見るとよい。一粒子系のシュレーディンガー方程式もWikipediaからのコピペである。
 \newpage
 \section{その他}
 \subsection{URL}
 \verb|\begin{document}|の前に\verb|\usepackage{url}|が必要。
 \begin{verbatim}
-\url{http://flab.phys.nagoya-u.ac.jp}
+\url{https://www1.gifu-u.ac.jp/~physics/}
 \end{verbatim}
-\url{http://flab.phys.nagoya-u.ac.jp}
+\url{https://www1.gifu-u.ac.jp/~physics/}
 
 \subsection{参照}
 論文の参照は\verb|\cite{}|、図、テーブル、数式、セクションの参照は\verb|\ref{}|である。
 \begin{verbatim}
-HTSの論文~\cite{Yoshimoto:2017ufm}、論文を探すにはinspire~\cite{inspire}、頻出表現はここ\ref{sec:frequent}
+私の博士論文の副論文~\cite{Yoshimoto:2017ufm}、論文を探すにはinspire~\cite{inspire}やGoogle Scholar~\cite{google-scholar}、頻出表現は\ref{sec:frequent}を参照せよ。
 \end{verbatim}
-HTSの論文~\cite{Yoshimoto:2017ufm}、論文を探すにはinspire~\cite{inspire}、頻出表現はここ\ref{sec:frequent}
+私の博士論文の副論文~\cite{Yoshimoto:2017ufm}、論文を探すにはinspire~\cite{inspire}やGoogle Scholar~\cite{google-scholar}、頻出表現は\ref{sec:frequent}を参照せよ。
 
 \subsection{他のページを読み込む}
-別のファイルに中身を書いておいて、それをメインのファイルに統合することができる。inputはそのまま代入され、includeは読み込んだファイルの直前で改ページされる。使い方次第。拡張子\verb|.tex|は必要ない
+別のファイルに中身を書いておいて、それをメインのファイルに統合することができる。inputはそのまま代入され、includeは読み込んだファイルの直前で改ページされる。拡張子\verb|.tex|は必要ない。
 \begin{verbatim}
 \input{abst}
 \include{abst}
 \end{verbatim}
 
 \subsection{丸付き文字}
-通常の論文で丸付き文字を使うことはないが、使いたい場合は次のようにする。
-\textcircled{\scriptsize 1} = \verb|\textcircled{\scriptsize 1}|\\
+通常の論文で丸付き文字を使うことはないが、使う場合は
+\textcircled{\scriptsize 1} = \verb|\textcircled{\scriptsize 1}|\\ とする。
 科研費などで次のようにも書ける。\verb|\raise0.2ex\hbox{\textcircled{\scriptsize{3}}}|
 
 \subsection{文章を強調する}
 通常の論文で文章を強調することはないが、使いたい場合は次のようにする。
+
 \noindent
 \underline{下線を引いたり} = \verb|\underline{下線を引いたり}|\\
 {\bf 太字にしたり} = \verb|{\bf 太字にしたり}|\\
 \colorbox[named]{Black}{\color[named]{White}{\bf 黒背景にしたり}} = \verb|\colorbox[named]{Black}{\color[named]{White}{\bf 黒背景にしたり}}|\\
-科研費や学振の場合、白黒印刷されるらしいので、基本的に白黒で強調すると良いだろう。 下線はその途中で改行できないので注意。
+科研費や学振の場合、白黒印刷されるらしいので、基本的に白黒で強調すると良いだろう。 下線はその途中で改行できないので注意せよ。
 
-\subsection{一覧}
-テーブルリスト\verb|\listoftables|、図のリスト\verb|\listoffigures|、参照はややこしいのでソースをみてほしい。
+\subsection{PDF内のリンクについて}
+PDFファイルを見ると、所々で色付きの□が表示されている。そこをクリックすると、セクションや図、表、参考文献などに飛んでくれる。
+この□は印刷するときには表示されないので心配無用である。
+
+\subsection{表目次、図目次、参考文献}
+表目次\verb|\listoftables|、図目次\verb|\listoffigures|と書けば、そこに各目次が表示される。最後に書くと良いだろう。
+参考文献はややこしいのでソースをみてほしい。
 %\newpage %新しいページ
 \listoftables %テーブルリスト
 %\newpage %新しいページ
 \listoffigures %図のリスト
 
 \begin{thebibliography}{99}
-\bibitem{inspire}
-\url{http://inspirehep.net/}
-%\cite{Yoshimoto:2017ufm}
 \bibitem{Yoshimoto:2017ufm} 
   M.~Yoshimoto, T.~Nakano, R.~Komatani and H.~Kawahara,
-  %``Nuclear emulsion readout system HTS aiming at scanning an area of one thousand square meters,''
-  arXiv:1704.06814 [physics.ins-det].
-  %%CITATION = ARXIV:1704.06814;%%
+  ``Hyper-track selector nuclear emulsion readout system aimed at scanning an area of one thousand square meters,''
+  PTEP {\bf 2017}, no. 10, 103H01 (2017)
+  % doi:10.1093/ptep/ptx131
+  % [arXiv:1704.06814 [physics.ins-det]].
+  %%CITATION = doi:10.1093/ptep/ptx131;%%
+  %9 citations counted in INSPIRE as of 31 Oct 2018
+\bibitem{inspire}
+\url{https://inspirehep.net/}
+\bibitem{google-scholar}
+\url{https://scholar.google.co.jp/}
 \end{thebibliography}
 
 \end{document}
