@@ -1,14 +1,21 @@
 # 講習会までの準備
 
-LaTeXの環境構築のため、https://www.tug.org/texlive/acquire-netinstall.html から install-tl-windows.exe をダウンロードし、インストールを完了させる。
+自分のラップトップパソコン(ノートパソコン)を用意する(Windows / Mac) 可。
 
-LaTeXファイルを編集するため、https://code.visualstudio.com/ から Download for Windowsで、 VSCode***.exeをダウンロードする。設定は一緒にするのでインストールは不要である。インストールしてしまっても構わない。(その場合はアンインストールしてから再インストールする)
+LaTeXの環境構築のため、Windowsユーザーは https://www.tug.org/texlive/acquire-netinstall.html から install-tl-windows.exe をダウンロードし、**インストールを完了させる**。Macユーザーは自分で調べてインストールすること。インストールに約1時間かかるので、インストールで分からないことがあれば、講習会の前日までに質問すること。
+
+LaTeXファイルを編集するため、https://code.visualstudio.com/ から Download for Windowsで、 VSCode***.exeをダウンロードする。設定は一緒にするのでインストールは不要である。インストールしてしまっても構わない。(その場合は一度アンインストールしてから再インストールする)
 
 # 講習会の内容
 
 以下の内容を予定している。
 
+* latexの環境が正しくインストールされていることを確認する
 * VSCodeをインストールする
-* 拡張機能をインストールし、設定する
-* sample.tex を自分でコンパイルできることを確認する
+* VSCodeの拡張機能をインストールし、設定する
+* sample.tex を自分でコンパイルしPDFファイルができることを確認する
 * テキスト内容を一通り解説する
+* サンプルの内容を書き換えてPDFファイルができることを確認する
+
+# 講習会の日程
+2018年度 11月7日(水) 13:00~14:00 部屋未定
