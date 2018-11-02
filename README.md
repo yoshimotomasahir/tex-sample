@@ -15,16 +15,11 @@ LaTeXファイルを編集するため、https://code.visualstudio.com/ から D
 ```
 xcode-select --install
 ```
-インストールをクリックし、xcodeとcommandline tool手に入れる(とても時間がかかる)と、開発用の様々なコマンドが使えるようになる。
+インストールをクリックし、xcodeとcommandline toolを手に入れる(とても時間がかかる)と、開発用の様々なコマンドが使えるようになる。
 
 Homebrewをインストール
 ```
 >/usr/bin/ruby -e “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)
-```
-
-Homebrewの拡張機能をインストール
-```
-brew install caskroom/cask/brew-cask
 ```
 
 LaTeX環境のためにghostscriptとMacTeXをinstall&更新
