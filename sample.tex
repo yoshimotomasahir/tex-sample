@@ -40,11 +40,11 @@
 
 \LaTeX とは、テキストベースで論文等を執筆するための組み版システムである。Microsoft Wordに対する利点は、図や表を入れる際に配置などを気にしなくても良いこと、参考文献などの管理がしやすいこと、数式が美しく表現できることなどが挙げられる。対して欠点としては、Microsoft Wordよりも取っつきにくいこと、ある程度はコマンドを覚える必要があること、そして卒業した後にあまり使う機会がないということが挙げられる。私は執筆にとにかく集中できるという理由で \LaTeX を使っているが、個人の好みを押しつけるつもりはない。
 
-この文章は、修士論文と卒業論文を\LaTeX で書く人のために、\LaTeX の使い方を何度もググる必要がないようにまとめた文章である。論文としての書き方は厳密に正しくはないので注意せよ。
+この文章は、修士論文と卒業論文を\LaTeX で書く人のために、\LaTeX の使い方を何度もググる必要がないようにまとめた文章である。論文としての書き方は厳密に正しくはないので注意してほしい。
 
-Windowsユーザー向けに、\LaTeX のインストールは \url{https://www.tug.org/texlive/acquire-netinstall.html} から install-tl-windows.exe をダウンロードし実行する。オプションの変更は必要ない。6GB以上のディスクサイズを必要とし、インストールに時間がかかるので注意せよ。
+講習前の準備として、README.md に書かれた準備は完了しただろうか。ここからは、準備が完了したことを前提に話を進めていくことにする。
 
-論文の編集は Visual Studio Code (エディタ) + LaTeX Workshop (Visual Code内の拡張機能) を使うと便利である。Visual Codeの設定ファイル (User Settings) に以下のコードを書いておけば自動的にコンパイルされる。ちなみに、ptex2pdfを2度実行しているのは目次や参考文献などのリンクを2度目で生成しているからである。
+論文の編集は Visual Studio Code (エディタ) + LaTeX Workshop (Visual Code内の拡張機能) を使うと便利である。Visual Studio Codeの設定ファイル (User Settings) に以下のコードを書いておけば、ファイルを編集し保存する度に自動的にコンパイルされる。ちなみに、ptex2pdfを2度実行しているのは目次や図表や参考文献などのリンク(番号)を2度目で生成しているからである。
 \begin{verbatim}
 "latex-workshop.latex.tools": [
     {
@@ -72,18 +72,16 @@ Windowsユーザー向けに、\LaTeX のインストールは \url{https://www.
 ],
 \end{verbatim}
 
-Windowsユーザーの方は、PDF表示用にSumatraPDFをインストールすることをお勧めする。Visual Studio Code と SumatraPDFの組み合わせでは、SumatraPDFのオプションの逆順検索コマンドラインの設定で、\verb|"C:\Program Files\Microsoft VS Code\code.exe" -g "%f:%l"|と書いておくと、PDFファイルの文章をクリックするとテキストファイルの元の文章の場所に飛ぶことができる。なお、\verb|code.exe|のパスは上記の限りではないので注意されたし。
+必須ではないが、Windowsユーザーの方は、PDF表示用にSumatraPDFをインストールすることをお勧めする。Visual Studio Code と SumatraPDFの組み合わせでは、SumatraPDFのオプションの逆順検索コマンドラインの設定で、\verb|"C:\Program Files\Microsoft VS Code\code.exe" -g "%f:%l"|などと書いておくと、PDFファイルの文章をクリックするとテキストファイルの元の文章の場所に飛ぶことができる。なお、\verb|code.exe|のパスは上記の限りではないので注意されたし。
 
 bibtexを使う場合は \verb|pbibtex -kanji=utf8 filename| のようにコマンドを叩く。\verb|.tex| は必要ない。
 
-個人的に、学科や研究室において解説講座を適宜開催するので、その際によく質問して、よく理解して、快適な執筆作業を構築しよう。
- 
 \section*{講習会について}
 
-講習会に参加する前までに、\LaTeX のインストールを完了させておくことを期待する。インストールには時間がかかるため、講習中にインストールを完了させるのは難しいだろう。
+講習会が開始する前に、README.md を読んで\LaTeX のインストールが完了していることを前提にしている。インストールには時間がかかるため、講習中にインストールを完了させるのは難しいだろう。講習会でよく質問して、よく理解して、LaTeXが難しそうならWordで書くのも個人的には有りだと思う。とにかく、自分に適した快適な執筆環境が構築できれば幸いである。
 
 \section*{このファイルについて}
-このファイルを使って論文を書くことをお勧めする。私がお勧めする設定は網羅しているつもりである。
+このファイルには、私がお勧めする設定は網羅している。不要なところを削除するなどして、論文を書き始めて欲しい。
 
 \section*{著者について}
 
@@ -146,9 +144,16 @@ GNU General Public License (GNU GPL)
  \item $(2016-2014+1)$年間所属しました。(引き算) \verb|$-$|
 \end{itemize}
 \clearpage
-\section{図の書き方}
+\section{図\label{sec:figure}}
 \subsection{図の基本}
-図は次のように書く。ファイルは相対パスで書くことが出来る。拡張子の前の.と間違えるので、パスの中に.を含めることはできない。図が出現する場所はユーザー側がここに挿入したいという場所に必ずしも挿入されるわけではない。一般的に論文にでは図が文中に出てくるより前に来るか後に来るかは問われないため、気にする必要はない。気にする人はMicrosoft Wordを使った方が良い。\verb|[htbp]|はh=その場所に、t=ページの上部に、b=ページの下部に、p=独立したページにそれぞれ表示するよう試す。labelはcaptionの後に指定する必要がある。
+図はtexファイルの外に保存しておき、texファイルにその場所を指し示すコマンドを書けば挿入できる。ファイルはtexファイルがある場所からの相対パスで書くことが出来る。このサンプルでは全てのファイルを\verb|figs|というフォルダ内に保存してある。拡張子の前の.と間違えるので、パスの中に.を含めることはできない。
+
+図が出現する場所はユーザー側がここに挿入したいという場所に必ずしも挿入されるわけではない。一般的に論文にでは図が文中に出てくるより前に来るか後に来るかは問われないため、特段気にする必要はない。\verb|[htbp]|はh=その場所に、t=ページの上部に、b=ページの下部に、p=独立したページにそれぞれ表示するように試す(私も正確な仕様は把握していない)。
+
+本文中の図番号は、図中で指定したlabel名と対応し、図が出現する順番に自動で割り振られる。本文中には\verb|図\ref{fig:image}|と書き、図のキャプション内に\verb|\label{fig:image}|と書いておくと、\verb|fig:image|が目印となって番号が勝手に挿入される。
+
+例えば、次のように\verb|result2.pdf|を挿入したとしよう。
+
 \begin{verbatim}
 \begin{figure}[htbp]
 \centering
@@ -156,13 +161,17 @@ GNU General Public License (GNU GPL)
 \caption{幅70mmで画像を表示する方法\label{fig:test_image}}
 \end{figure}
 \end{verbatim}
+
 これを実際に描くと図~\ref{fig:test_image}のようになる。
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=70mm]{./figs/result2.pdf}
 \caption{幅70mmで画像を表示する方法\label{fig:test_image}}
 \end{figure}
+
 画像のサイズの指定方法は、いくつかの方法がある。
+
 \begin{verbatim}
 width=100mm 幅をミリメートルで指定する方法
 width=1.0\textwidth テキスト幅からの倍率で指定する方法
@@ -174,53 +183,56 @@ scale=0.2 画像やPDFファイルのサイズからの倍率を指定する方�
 \begin{verbatim}
 \begin{figure}[htbp]
 \centering
-\subfloat[0~deg]{\includegraphics[angle=0,scale=0.2]{./figs/result2.pdf}}
+\subfloat[0~degree]{\includegraphics[angle=0,scale=0.2]{./figs/result2.pdf}}
 \hspace{1em}
-\subfloat[45~deg]{\includegraphics[angle=45,scale=0.2]{./figs/result2.pdf}}
+\subfloat[45~degree]{\includegraphics[angle=45,scale=0.2]{./figs/result2.pdf}}
 \hspace{1em}
-\subfloat[90~deg]{\includegraphics[angle=90,scale=0.2]{./figs/result2.pdf}}
+\subfloat[90~degree]{\includegraphics[angle=90,scale=0.2]{./figs/result2.pdf}}
 \caption{画像を回転させたり、複数の画像を並べたりする方法\label{fig:multi_images}}
 \end{figure}
 \end{verbatim}
 
 \begin{figure}[htbp]
 \centering
-\subfloat[0~deg]{\includegraphics[angle=0,scale=0.2]{./figs/result2.pdf}}
+\subfloat[0~degree]{\includegraphics[angle=0,scale=0.2]{./figs/result2.pdf}}
 \hspace{1em}
-\subfloat[45~deg]{\includegraphics[angle=45,scale=0.2]{./figs/result2.pdf}}
+\subfloat[45~degree]{\includegraphics[angle=45,scale=0.2]{./figs/result2.pdf}}
 \hspace{1em}
-\subfloat[90~deg]{\includegraphics[angle=90,scale=0.2]{./figs/result2.pdf}}
+\subfloat[90~degree]{\includegraphics[angle=90,scale=0.2]{./figs/result2.pdf}}
 \caption{画像を回転させたり、複数の画像を並べたりする方法\label{fig:multi_images}}
 \end{figure}
-
+    
 
 \subsection{図の表示の応用}
 
-グラフを作るときは、論文化しやすいようにPDFファイルで保存しておくと良い。他の形式ももちろん使える。図~\ref{fig:various_img}で例を描画した。それぞれ異なる拡張子で表示してみた。
-ちなみに、png、eps、jpgを使うときは\verb|\usepackage[dvipdfmx]{color}|が必要。
+グラフを作るときは、論文内で検索しやすいようにPDFファイルで保存しておくと良い。他の形式ももちろん使える。図~\ref{fig:various_img}で例を描画した。それぞれ異なる拡張子で表示してみた。
+ちなみに、png、eps、jpgを使うときは\verb|\usepackage[dvipdfmx]{color}|が必要となる。検索すると分かるが、EPSファイルでは図内の文字が検索可能になっている。
 
 \begin{figure}[htbp]
 \centering
-\subfloat[png]{\includegraphics[scale=0.2]{./figs/result.png}}
-\subfloat[eps]{\includegraphics[scale=0.2]{./figs/result.eps}}
-\subfloat[jpg]{\includegraphics[scale=0.2]{./figs/result.jpg}}
+\subfloat[pngファイル]{\includegraphics[scale=0.2]{./figs/result.png}}
+\subfloat[epsファイル]{\includegraphics[scale=0.2]{./figs/result.eps}}
+\subfloat[jpgファイル]{\includegraphics[scale=0.2]{./figs/result.jpg}}
 \caption{png, eps, jpgの画像を表示する方法\label{fig:various_img}}
 \end{figure}
 
-複数ページを持つPDFは、ページ番号を指定しながら表示させることが可能。図~\ref{fig:multi_page}で例を描画した。図~\ref{fig:page1}は1ページ目、図~\ref{fig:page2}は2ページ目。
+機会は少ないとは思うが、複数ページを持つPDFはページ番号を指定して表示させることが可能である。図~\ref{fig:multi_page}で例を描画した。図~\ref{fig:page1}は1ページ目、図~\ref{fig:page2}は2ページ目。
 
 \begin{figure}[htbp]
 \centering
-\subfloat[multi\_page.pdfの1ページ目\label{fig:page1}]{\includegraphics[angle=270,page=1,width=0.5\textwidth]{./figs/multi_page.pdf}}
+\subfloat[multi\_page.pdfの1ページ目 width=0.5\label{fig:page1}]
+{\fbox{\includegraphics[page=1,width=0.5\textwidth]{./figs/multi_page.pdf}}}
 \hspace{1em}
-\subfloat[multi\_page.pdfの2ページ目\label{fig:page2}]{\includegraphics[angle=270,page=2,width=0.32\textwidth]{./figs/multi_page.pdf}}
+\subfloat[multi\_page.pdfの2ページ目 width=0.3\label{fig:page2}]
+{\fbox{\includegraphics[page=2,width=0.3\textwidth]{./figs/multi_page.pdf}}}
 \caption{複数ページを持つPDFの一部を表示させる方法\label{fig:multi_page}}
 \end{figure}
 
 \clearpage
 
-\section{テーブル}
-テーブルは、次の記述で表~\ref{tab:emulsion_telescope}のようになる。詳細はググってほしい。
+\section{表(テーブル)}
+\subsection{texにおける表の書き方}
+表は、次の記述で表~\ref{tab:emulsion_telescope}のようになる。詳細はググってほしい。
 \begin{verbatim}
 \begin{table}[htbp]
 \centering
@@ -256,7 +268,30 @@ scale=0.2 画像やPDFファイルのサイズからの倍率を指定する方�
 \caption{表の例: GRAINEエマルション望遠鏡の基本性能とFermi-LATとの比較\label{tab:emulsion_telescope}}
 \end{table}
 
-\newpage
+\subsection{Excelでテーブルを作ってtexに挿入する方法}
+複雑なレイアウトの表を作るときは、texファイル上で格闘するよりもMicrosoft Excelなどで作成した方が楽なことが多い。
+例えば、セル内で改行したいとき、右寄せ中央寄せなどを同じ列で異なる設定にしたいとき、罫線を好きな場所に引きたい時、セルを結合したいときなどである。
+
+Excelで表を作成し、PDFファイルとして保存し、必要な場所だけを切り抜いて画像またはPDFファイルとして保存する。そのPDFファイル(画像)を\ref{sec:figure}で説明したように図として挿入する。そのとき、\verb|\begin{figure} ~~ \end{figure}| ではなく\verb|\begin{table} ~~ \end{table}| とすると、図~1、図~2ではなく、表~1、表~2と自動的に番号付けされる。
+
+Excelからtexファイルに表を挿入はいくつかの工程が必要となる。
+表~\ref{tab:table_cop}に各方法をまとめた。
+pdfcropを使うときは、Perlというプログラムを事前にインストールする必要がある(WindowsユーザーだとStrawberry Perl)。
+
+\begin{verbatim}
+\begin{table}[htbp]
+    \centering
+    \includegraphics[width=110mm]{./figs/table_crop.pdf}
+    \caption{\LaTeX で表を作成する方法(これはLaTeX+PDF)\label{tab:table_cop}}
+\end{table}
+\end{verbatim}
+\begin{table}[htbp]
+    \centering
+    \includegraphics[width=110mm]{./figs/table_crop.pdf}
+    \caption{\LaTeX で表を作成する方法(これはLaTeX+PDF)\label{tab:table_cop}}
+\end{table}
+    
+\clearpage
 \section{リスト}
 幾つかのリストを書く方法を示す。itemize, enumerate, descriptionがよく使われる。
 \subsection{itemizeを使う方法}
@@ -454,7 +489,7 @@ Wikipediaの数式は\LaTeX の数式表記になっているので、欲しい�
 \url{https://www1.gifu-u.ac.jp/~physics/}
 
 \subsection{参照}
-論文の参照は\verb|\cite{}|、図、テーブル、数式、セクションの参照は\verb|\ref{}|である。
+論文の参照は\verb|\cite{}|を用いる、\ref{sec:figure}で説明したが、図、表、数式、セクションの参照は\verb|\ref{}|を用いる。図、表、数式などはそれぞれ1から順番に出現した順番に番号が振られる。他の図などをコピペしたときにlabelの書き換え忘れが頻繁に発生するので注意してほしい。
 \begin{verbatim}
 私の博士論文の副論文~\cite{Yoshimoto:2017ufm}、論文を探すにはinspire~\cite{inspire}やGoogle Scholar~\cite{google-scholar}、頻出表現は\ref{sec:frequent}を参照せよ。
 \end{verbatim}
