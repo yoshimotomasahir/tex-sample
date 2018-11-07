@@ -236,6 +236,7 @@ scale=0.2 画像やPDFファイルのサイズからの倍率を指定する方�
 \begin{verbatim}
 \begin{table}[htbp]
 \centering
+\caption{表の例: GRAINEエマルション望遠鏡の基本性能とFermi-LATとの比較\label{tab:emulsion_telescope}}
 \begin{tabular}{r||c|l}
 右寄せ&中央寄せ&左寄せ\\
      &Fermi-LAT&GRAINE\\
@@ -248,11 +249,11 @@ scale=0.2 画像やPDFファイルのサイズからの倍率を指定する方�
 不感時間          &26.5~$\mu$sec (readout time)& 0\%                    \\
 \hline
 \end{tabular}
-\caption{表の例: GRAINEエマルション望遠鏡の基本性能とFermi-LATとの比較\label{tab:emulsion_telescope}}
 \end{table}
 \end{verbatim}
 \begin{table}[htbp]
 \centering
+\caption{表の例: GRAINEエマルション望遠鏡の基本性能とFermi-LATとの比較\label{tab:emulsion_telescope}}
 \begin{tabular}{r||c|l}
 右寄せ&中央寄せ&左寄せ\\
      &Fermi-LAT&GRAINE\\
@@ -265,7 +266,6 @@ scale=0.2 画像やPDFファイルのサイズからの倍率を指定する方�
 不感時間          &26.5~$\mu$sec (readout time)& 0\%                    \\
 \hline
 \end{tabular}
-\caption{表の例: GRAINEエマルション望遠鏡の基本性能とFermi-LATとの比較\label{tab:emulsion_telescope}}
 \end{table}
 
 \subsection{Excelでテーブルを作ってtexに挿入する方法}
@@ -281,14 +281,14 @@ pdfcropを使うときは、Perlというプログラムを事前にインスト
 \begin{verbatim}
 \begin{table}[htbp]
     \centering
-    \includegraphics[width=110mm]{./figs/table_crop.pdf}
     \caption{\LaTeX で表を作成する方法(これはLaTeX+PDF)\label{tab:table_cop}}
+    \includegraphics[width=110mm]{./figs/table_crop.pdf}
 \end{table}
 \end{verbatim}
 \begin{table}[htbp]
     \centering
-    \includegraphics[width=110mm]{./figs/table_crop.pdf}
     \caption{\LaTeX で表を作成する方法(これはLaTeX+PDF)\label{tab:table_cop}}
+    \includegraphics[width=110mm]{./figs/table_crop.pdf}
 \end{table}
     
 \clearpage
