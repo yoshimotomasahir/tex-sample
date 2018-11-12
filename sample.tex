@@ -291,6 +291,30 @@ pdfcropを使うときは、Perlというプログラムを事前にインスト
     \includegraphics[width=110mm]{./figs/table_crop.pdf}
 \end{table}
     
+\subsection{画像を文字の横に置く方法}
+
+表の機能を使って、画像を文字の横に置くことも可能である。ただし、あまり多用するものではない。
+図~\ref{fig:curry_rice}のように左側に簡単な文章を置き、右側に画像を置くといったことも可能である。
+書き方はソースを参照せよ。
+
+\begin{figure}[htbp]
+    \begin{tabular}{lr}
+        \begin{tabular}{l}
+            カレーの作り方\\
+            ・欲しい材料を欲しいサイズに切る\\
+            ・腐食と熱に強い金属製の容器に水と切った材料を入れる\\
+            ・容器の下から加熱する\\
+            ・辛い薬剤を適量入れる\\
+            ・米と水をライスクッカーに入れ電源を入れ完成まで待つ\\
+            ・陶器製の容器に完成した米と金属製容器で加熱された混合物を盛る\\
+        \end{tabular}& 
+        \begin{minipage}{40mm}{
+            \includegraphics[width=40mm]{./figs/curry_rice.jpg}
+            \caption{一般的にカレーライスと呼ばれる食べ物\label{fig:curry_rice}}
+        }\end{minipage}\\
+    \end{tabular}
+\end{figure}
+
 \clearpage
 \section{リスト}
 幾つかのリストを書く方法を示す。itemize, enumerate, descriptionがよく使われる。
