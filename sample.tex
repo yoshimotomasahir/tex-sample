@@ -1,4 +1,4 @@
-\documentclass[a4j,11px]{jsbook}
+\documentclass[a4j,openany,11px]{jsbook}
 %
 % 古いパッケージを自動チェック
 % \RequirePackage[l2tabu, orthodox]{nag}
@@ -10,7 +10,7 @@
 \usepackage{url} %URLを表示する
 \usepackage[dvipdfmx]{graphicx}
 \usepackage[dvipdfmx]{color}
-\usepackage[dvipdfmx]{hyperref}
+\usepackage[dvipdfmx,hidelinks]{hyperref}
 \usepackage{pxjahyper}
 \usepackage{verbatim}
 \usepackage{amsmath}
@@ -19,26 +19,39 @@
 \usepackage{textcomp}
 \usepackage{url}
 \usepackage{color}
-\setcounter{tocdepth}{\maxdimen} %subsubsectionまで目次を表示する
+% \setcounter{tocdepth}{\maxdimen} %subsubsectionまで目次を表示する
 \bibliographystyle{junsrt} %参照のスタイル
-
-\title{\vspace{30mm} \large 卒業論文\vspace{10mm}\\ \LARGE\LaTeX での論文の書き方(論文のタイトル)\vspace{5mm}}
-\author{\large 岐阜大学 教育学部 \\ \vspace{5mm}
-\large 理科教育講座 物理学 \\ \vspace{5mm}
-\large おなまえ}
-\date{最終更新 \today}
 
 % ドキュメント
 \begin{document}
 % タイトル
-\maketitle
-\thispagestyle{empty} %ページ番号を消す
-% \newpage %新しいページ
-\tableofcontents %目次の表示
-\newpage %新しいページ
-\chapter*{アブストラクト}
+\begin{titlepage}
+\centering
+\vspace*{50truept}
+{\LARGE 卒業論文}\\
+\vspace{130truept}
+{\huge \LaTeX での論文の書き方(論文のタイトル)}\\ % タイトル
+\vspace{10truept}
+{\LARGE ―初めて論文を書く人向け(サブタイトル)―}\\ % 必要なければコメントアウト
+\vspace{120truept}
+{\LARGE 岐阜大学 教育学部}\\ % 所属1
+\vspace{10truept}
+{\LARGE 理科教育講座 物理学専攻 〇〇研究室}\\ % 所属2
+\vspace{20truept}
+{\LARGE 学籍番号 ********}\\ % 学籍番号
+\vspace{20truept}
+{\LARGE 吉本 雅浩}\\ % 著者
+\vspace{50truept}
+{\LARGE 指導教員 毛雨 井乃}\\
+\vspace{50truept}
+{\LARGE \today} % 提出日
+\end{titlepage}
 
-本来、ここにはアブストラクト(概要)を書くべし。
+\thispagestyle{empty} %ページ番号を消す
+\tableofcontents %目次の表示
+\chapter*{概要}
+
+本来、ここには概要(Abstract)を書くべし。
 
 \LaTeX とは、テキストベースで論文等を執筆するための組み版システムである。Microsoft Wordに対する利点は、図や表を入れる際に配置などを気にしなくても良いこと、参考文献などの管理がしやすいこと、数式が美しく表現できることなどが挙げられる。対して欠点としては、Microsoft Wordよりも取っつきにくいこと、ある程度はコマンドを覚える必要があること、そして卒業した後にあまり使う機会がないということが挙げられる。私は執筆にとにかく集中できるという理由で \LaTeX を使っているが、個人の好みを押しつけるつもりはない。
 
@@ -46,7 +59,7 @@
 
 講習前の準備として、README.md に書かれた準備は完了しただろうか。ここからは、準備が完了したことを前提に話を進めていくことにする。
 
-論文の編集は Visual Studio Code (エディタ) + LaTeX Workshop (Visual Code内の拡張機能) を使うと便利である。Visual Studio Codeの設定ファイル (User Settings) に以下のコードを書いておけば、ファイルを編集し保存する度に自動的にコンパイルされる。ちなみに、ptex2pdfを2度実行しているのは目次や図表や参考文献などのリンク(番号)を2度目で生成しているからである。
+論文の編集は Visual Studio Code (エディタ) + LaTeX Workshop (Visual Code内の拡張機能) を使うと便利である。Visual Studio Codeの設定ファイル (User Settings) に以下のコードを書いておけば、ファイルを編集し保存する度に自動的にコンパイル(文字列からPDFファイルに変換する作業)される。ちなみに、ptex2pdfを2度実行しているのは目次や図表や参考文献などのリンク(番号)を2度目で生成しているからである。
 \begin{verbatim}
 "latex-workshop.latex.tools": [
     {
@@ -74,7 +87,11 @@
 ],
 \end{verbatim}
 
-必須ではないが、Windowsユーザーの方は、PDF表示用にSumatraPDFをインストールすることをお勧めする。Visual Studio Code と SumatraPDFの組み合わせでは、SumatraPDFのオプションの逆順検索コマンドラインの設定で、\verb|"C:\Program Files\Microsoft VS Code\code.exe" -g "%f:%l"|などと書いておくと、PDFファイルの文章をクリックするとテキストファイルの元の文章の場所に飛ぶことができる。なお、\verb|code.exe|のパスは上記の限りではないので注意されたし。
+必須ではないが、Windowsユーザーの方は、PDFビューア(表示用ツール)にSumatraPDFを使うことを強くお勧めする。これは、コンパイルするたびに更新されるPDFファイルを自動的に更新して表示してくれるものである。Visual Studio Code内のブラウザでも構わない。
+だが、Adobe Readerだけは絶対に使ってはならない。Adobe ReaderはPDFファイルを読み取り専用にするので、コンパイルが出来なくなる。
+印刷するときのみ、Adobe Readerを使うようにしよう。
+
+Visual Studio Code と SumatraPDFの組み合わせでは、SumatraPDFのオプションの逆順検索コマンドラインの設定で、\verb|"C:\Program Files\Microsoft VS Code\code.exe" -g "%f:%l"|などと書いておくと、PDFファイルの文章をクリックするとテキストファイルの元の文章の場所に飛ぶことができる。なお、\verb|code.exe|のパスは上記の限りではないので注意されたし。
 
 bibtexを使う場合は \verb|pbibtex -kanji=utf8 filename| のようにコマンドを叩く。\verb|.tex| は必要ない。
 
@@ -87,13 +104,13 @@ bibtexを使う場合は \verb|pbibtex -kanji=utf8 filename| のようにコマ�
 
 \section*{著者について}
 
-吉本 雅浩 (岐阜大学 教育学部)
+吉本 雅浩 (岐阜大学 教育学部) yoshimoto@onsanai.com
 
 \section*{ライセンス}
 
 GNU General Public License (GNU GPL)
 
-\chapter{特殊文字について}
+\chapter{特殊文字・記号について}
 \section{メタ文字}
 \LaTeX のメタ文字は以下の13種。これらは文中で直接使うことができない。
 \begin{verbatim}
@@ -359,7 +376,7 @@ pdfcropを使うときは、Perlというプログラムを事前にインスト
  \item 硝酸銀 (高い)
  \item 臭化カリウム
 \end{enumerate}
-\newpage
+
 \chapter{数式}
 equation*コマンドで数式を書くとただの数式を書ける。
 \begin{verbatim}
@@ -503,7 +520,7 @@ e&=|\!| 負の空白
 
 \section{Tips}
 Wikipediaの数式は\LaTeX の数式表記になっているので、欲しい関数は編集からソースを見るとよい。一粒子系のシュレーディンガー方程式もWikipediaからのコピペである。
-\newpage
+
 \chapter{その他}
 \section{URL}
 \verb|\begin{document}|の前に\verb|\usepackage{url}|が必要。
@@ -544,12 +561,42 @@ Wikipediaの数式は\LaTeX の数式表記になっているので、欲しい�
 PDFファイルを見ると、所々で色付きの□が表示されている。そこをクリックすると、セクションや図、表、参考文献などに飛んでくれる。
 この□は印刷するときには表示されないので心配無用である。
 
+\section{よくある質問(FAQ)}
+\subsection{コンパイルが通らなくなってしまった}
+経験上、99\%は文法ミスである。\verb|\end|や\verb|\begin|を忘れていないかをもう一度確認してみよう。
+コンパイルが通らなくなった場所を特定するには、コンパイル時に設定した\verb|"-interaction=nonstopmode",|を削除してみるのも一つの手である。
+この設定を外すと、エラーの箇所で停止してくれる。例えば、次のようなエラーが出たときは、\verb|\end{table}|を書き忘れたときであることが推定できる。
+
+\begin{verbatim}
+    ! LaTeX Error: \begin{table} on input line 552 ended by \end{document}.
+\end{verbatim}
+
+\subsection{概要・序論・考察・結論とは何か}
+
+概要は要旨やAbstractと呼ばれることもある。詳しくは後述する。
+序論は諸元や導入、Introductionとも呼ばれる。なぜ自分はこの論文を書いたのかを説明しなければならない。研究の背景や動機を丁寧に説明するのである。
+考察はDiscussionであり、(編集中)を書く。
+結論はまとめやConclusionとも呼ばれ、(編集中)を書く。
+
+概要には2種類あることがあり、これが初めて論文を書く人を惑わせる要因の一つである。
+概要について、私の知るところを以下に述べる。
+概要(要旨とも)が2種類要求されるとき、一つは論文本体に含まれずそれ単体で配布されるものである。
+他方、論文の最初に記述を要求されるものも概要と呼ばれ、論文を書くときはほぼ必ず要求される。
+
+某N大学の指針によると、単体で配布される概要は、客観的であることや文字数制限、そして内容の配分についてまで細かく規定している。
+一方で、論文本体の最初に記述する概要は、これらの指針はなく、論文作成者の判断に任せられている。
+
+ただ、書くべき内容はほぼ同じである。研究の背景、動機、研究の目的や手法、そして結果と結論という、論文の最初から最後までの内容を簡潔にまとめて、概要に書かねばならない。これらは論文内で全て既に議論されていることではあるが、それでもなおもう一度よく考え、全体を通して主張することを概要に網羅するのである。
+
+\subsection{内容は間違っていないのにコンパイルに失敗する}
+PDFファイルをAdobe readerなどで開いてはいないだろうか。Adobe readerは、PDFファイルの書き込み権限を握るため、コンパイルでPDFファイルを上書きなくなる。コンパイルの最後でPDFファイル生成で失敗するのは、Adobe readerが原因であることが多い。
+
 \section{表目次、図目次、参考文献}
 表目次\verb|\listoftables|、図目次\verb|\listoffigures|と書けば、そこに各目次が表示される。最後に書くと良いだろう。
 参考文献はややこしいのでソースをみてほしい。
-%\newpage %新しいページ
+
 \listoftables %テーブルリスト
-%\newpage %新しいページ
+
 \listoffigures %図のリスト
 
 \begin{thebibliography}{99}
