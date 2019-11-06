@@ -7,7 +7,8 @@
 https://www.tug.org/texlive/acquire-netinstall.html から install-tl-windows.exe をダウンロードし、**インストールを完了させる**。
 インストールに約1時間かかるので、インストールで分からないことがあれば、講習会の前日までに質問すること。
 
-LaTeXファイルを編集するため、https://code.visualstudio.com/ から Download for Windowsで、 VSCode***.exeをダウンロードする。設定は一緒にするのでインストールは不要である。インストールしてしまっても構わない。(その場合は一度アンインストールしてから再インストールする)
+LaTeXファイルを編集するため、https://code.visualstudio.com/ から Download for Windowsで、 VSCode***.exeをダウンロードし、インストールを完了させる。
+インストール中に出てくる「追加タスク」の項目は、すべてチェックを入れておくと良いだろう。
 
 ### Macユーザー向け
 全体で5時間以上かかる。xcodeを持っていれば2時間ぐらい。
