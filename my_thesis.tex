@@ -1,0 +1,111 @@
+\documentclass[a4j,openany,11px]{jsbook}
+%
+% 古いパッケージを自動チェック
+% \RequirePackage[l2tabu, orthodox]{nag}
+% \usepackage[all, warning]{onlyamsmath}
+% 古いパッケージを自動チェック
+
+%\usepackage{subcaption} %図の中に複数の図を入れる
+\usepackage[top=30mm,bottom=30mm,left=25mm,right=25mm]{geometry}% 幅160mmの余り
+\usepackage{url} %URLを表示する
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{color}
+\usepackage[dvipdfmx,hidelinks]{hyperref}
+\usepackage{pxjahyper}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{subfig}
+% \usepackage{subcaption}
+\usepackage{textcomp}
+\usepackage{url}
+\usepackage{color}
+% \setcounter{tocdepth}{\maxdimen} %subsubsectionまで目次を表示する
+\bibliographystyle{junsrt} %参照のスタイル
+
+% ドキュメント
+\begin{document}
+% タイトル
+\begin{titlepage}
+    \centering
+    \vspace*{50truept}
+    {\huge 学位論文}\\
+    \vspace{100truept}
+    {\huge \LaTeX での論文の書き方(論文のタイトル)}\\ % タイトル
+    \vspace{10truept}
+    {\LARGE ―初めて論文を書く人向け(サブタイトル)―}\\ % 必要なければコメントアウト
+    \vspace{140truept}
+    {\LARGE 岐阜大学 教育学部}\\ % 所属1
+    \vspace{10truept}
+    {\LARGE 理科教育講座 物理学専攻 〇〇研究室}\\ % 所属2
+    \vspace{20truept}
+    {\LARGE 学籍番号 ********}\\ % 学籍番号
+    \vspace{20truept}
+    {\LARGE 吉本 雅浩}\\ % 著者
+    \vspace{50truept}
+    {\LARGE 指導教員 毛雨 井乃}\\
+    \vspace{50truept}
+    {\LARGE \today} % 提出日
+\end{titlepage}
+
+\thispagestyle{empty} %ページ番号を消す
+\tableofcontents %目次の表示
+\chapter*{概要}
+
+ここに概要を書く。テンプレートの最新版は\cite{tex_sample}を参照せよ。
+
+\chapter{導入}
+\section{論文で書くべきこと}
+次の項目について自分自身に問うてから論文や発表資料を作ると良い。
+\begin{enumerate}
+    \item 現在までに分かっていることは何か。
+    \item 何を新しく知ろうとしているのか。
+    \item なぜこの仕事の結果が重要なのか、何が面白いのか。
+    \item 実際の仕事の結果として分かったのは何か。
+    \item (この結果はその分野の中でどのような意味があるのか。)
+    \item 〈将来展望〉
+\end{enumerate}
+日本物理学会編 『科学英語論文のすべて』より引用、一部加筆。
+
+\chapter{権利}
+\section{クリエイティブ・コモンズ}
+クリエイティブ・コモンズのマークを図~\ref{fig:cc}に示す。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=30mm]{./figs/240px-Cc-public_domain_mark_white.png}
+    \caption{クリエイティブ・コモンズ・ライセンス\label{fig:cc}}
+\end{figure}
+
+
+\chapter{理解度}
+\section{用語}
+エンジニア業界でよく使われる、理解度についての用語を表~\ref{tab:understanding}へ示した。
+\begin{table}[htbp]
+    \centering
+    \caption{物事への理解度について\label{tab:understanding}}
+    \begin{tabular}{c|c}
+        用語             & 意味                                   \\
+        \hline
+        \hline
+        完全に理解した   & 幻想の理解のピーク                     \\
+        なにもわからない & これまでの理解が幻想だったことが分かる \\
+        ちょっとできる   & 後輩から頼られるが先は長い             \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\chapter{まとめ}
+概要と何が違うのか?
+
+\chapter*{謝辞}
+書いておくと無難
+
+\listoftables %テーブルリスト
+
+\listoffigures %図のリスト
+
+\begin{thebibliography}{99}
+    \bibitem{tex_sample}
+    \url{https://gitlab.com/yoshimoto/tex-sample}
+\end{thebibliography}
+
+\end{document}
