@@ -19,6 +19,31 @@
 \usepackage{textcomp}
 \usepackage{url}
 \usepackage{color}
+\usepackage{listings}
+\definecolor{codecomment}{rgb}{0.00,0.60,0.00}
+\definecolor{codenumber}{rgb}{0.50,0.50,0.50}
+\definecolor{codestrings}{rgb}{0.64,0.08,0.08}
+\definecolor{codeback}{rgb}{0.95,0.95,0.95}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{codeback},   
+    commentstyle=\color{codecomment},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codenumber},
+    stringstyle=\color{codestrings},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
 % \setcounter{tocdepth}{\maxdimen} %subsubsectionまで目次を表示する
 \bibliographystyle{junsrt} %参照のスタイル
 
@@ -68,6 +93,17 @@
 コンパイルされたPDFファイルは、Visual Studio Code内の表示ツールで閲覧することができる。
 執筆中にはAdobe Readerは絶対に使ってはならない。Adobe ReaderはPDFファイルを読み取り専用にするのでコンパイルが出来なくなる。
 印刷するときのみ、Adobe Readerを使おう。
+
+\LaTeX のコンパイルエラーは分かりにくいことで有名である。VSCodeを使ったケースだと、エラーは右下に「Recipe terminated with error.」と出て、「Open compiler log」をクリックするとログが見れる。大変長い文章の中で、重要なのは「! 」から始まる行から「l.」から始まる行までである。
+エラーの内容は「! 」から始まる行で記述され、エラーが出た行番号はその次の「l.」から始まる行で記述されている。
+例えば、次のようなエラーが出たときは、\verb|\end{table}|を書き忘れたときであることが推定できる。
+
+\begin{verbatim}
+    ! LaTeX Error: \begin{table} on input line 552 ended by \end{document}.
+\end{verbatim}
+
+経験上、エラーの99\%は文法ミスである。\verb|\end|や\verb|\begin|を忘れていないか、後述のメタ文字を書いてしまっていないかをもう一度確認してみよう。
+しかし、コンパイルエラーを読んで、直接的な原因が判明するケースは稀である。一通り文法をチェックし、エラーの内容でググった後に、10分以内に解決できなければ、諦めて忙しそうな先輩に聞くのが正しい解である。
 
 \section{自分が編集するファイル}
 このファイルと同じディレクトリに私がお勧めする設定は網羅した \verb|my_thesis.tex| というファイルを用意した。これを修正し論文を書き始めると良いだろう。
@@ -492,6 +528,14 @@ e&=|\!| 負の空白
 Wikipediaの数式は\LaTeX の数式表記になっているので、欲しい関数は編集からソースを見るとよい。一粒子系のシュレーディンガー方程式もWikipediaからのコピペである。
 
 \chapter{その他}
+\section{ソースコード}
+ソースコードは、ファイルとして保存しておき(例\verb|source_filename.py|)、言語とキャプションとファイル名を指定することでかっこよく表示させることができる。ただし、ソースコード内の日本語は正しく表示できないので注意が必要。
+\begin{verbatim}
+\lstinputlisting[language=Python, caption=Pythonのソースコード例]{source_filename.py}
+\end{verbatim}
+
+\lstinputlisting[language=Python, caption=Pythonのソースコード例]{source_filename.py}
+
 \section{URL}
 \verb|\begin{document}|の前に\verb|\usepackage{url}|が必要。
 \begin{verbatim}
@@ -532,14 +576,6 @@ PDFファイルを見ると、所々で色付きの□が表示されている�
 この□は印刷するときには表示されないので心配無用である。
 
 \section{よくある質問(FAQ)}
-\subsection{コンパイルが通らなくなってしまった}
-経験上、99\%は文法ミスである。\verb|\end|や\verb|\begin|を忘れていないかをもう一度確認してみよう。
-コンパイルが通らなくなった場所を特定するには、コンパイル時に設定した\verb|"-interaction=nonstopmode",|を削除してみるのも一つの手である。
-この設定を外すと、エラーの箇所で停止してくれる。例えば、次のようなエラーが出たときは、\verb|\end{table}|を書き忘れたときであることが推定できる。
-
-\begin{verbatim}
-    ! LaTeX Error: \begin{table} on input line 552 ended by \end{document}.
-\end{verbatim}
 
 \subsection{概要・序論・考察・結論とは何か}
 
@@ -557,9 +593,6 @@ PDFファイルを見ると、所々で色付きの□が表示されている�
 一方で、論文本体の最初に記述する概要は、これらの指針はなく、論文作成者の判断に任せられている。
 
 ただ、書くべき内容はほぼ同じである。研究の背景、動機、研究の目的や手法、そして結果と結論という、論文の最初から最後までの内容を簡潔にまとめて、概要に書かねばならない。これらは論文内で全て既に議論されていることではあるが、それでもなおもう一度よく考え、全体を通して主張することを概要に網羅するのである。
-
-\subsection{内容は間違っていないのにコンパイルに失敗する}
-PDFファイルをAdobe readerなどで開いてはいないだろうか。Adobe readerは、PDFファイルの書き込み権限を握るため、コンパイルでPDFファイルを上書きなくなる。コンパイルの最後でPDFファイル生成で失敗するのは、Adobe readerが原因であることが多い。
 
 \section{表目次、図目次、参考文献}
 表目次\verb|\listoftables|、図目次\verb|\listoffigures|と書けば、そこに各目次が表示される。最後に書くと良いだろう。
