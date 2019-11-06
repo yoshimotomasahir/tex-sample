@@ -28,12 +28,12 @@
 \begin{titlepage}
 \centering
 \vspace*{50truept}
-{\LARGE 卒業論文}\\
-\vspace{130truept}
+{\huge 学位論文}\\
+\vspace{100truept}
 {\huge \LaTeX での論文の書き方(論文のタイトル)}\\ % タイトル
 \vspace{10truept}
 {\LARGE ―初めて論文を書く人向け(サブタイトル)―}\\ % 必要なければコメントアウト
-\vspace{120truept}
+\vspace{140truept}
 {\LARGE 岐阜大学 教育学部}\\ % 所属1
 \vspace{10truept}
 {\LARGE 理科教育講座 物理学専攻 〇〇研究室}\\ % 所属2
@@ -49,70 +49,40 @@
 
 \thispagestyle{empty} %ページ番号を消す
 \tableofcontents %目次の表示
-\chapter*{概要}
+\chapter{導入}
 
-本来、ここには概要(Abstract)を書くべし。
+\LaTeX とは、テキストベースで論文等を執筆するための組み版システムである。Microsoft Wordに対する利点は、図や表を入れる際に配置などを気にしなくても良いこと、参考文献などの管理がしやすいこと、数式が美しく表現できることなどが挙げられる。欠点としては、Microsoft Wordよりも取っつきにくいこと、書きたいように書けないこと、ある程度はコマンドを覚える必要があること、そして卒業後にあまり使う機会がないということが挙げられる。書きたいように書けないとは、例えばパーセント記号「\%」はそのまま書くことができない(\ref{meta}参照)。私は、執筆に集中できるという理由で \LaTeX を使っているが、個人の好みを押しつけるつもりはない。
 
-\LaTeX とは、テキストベースで論文等を執筆するための組み版システムである。Microsoft Wordに対する利点は、図や表を入れる際に配置などを気にしなくても良いこと、参考文献などの管理がしやすいこと、数式が美しく表現できることなどが挙げられる。対して欠点としては、Microsoft Wordよりも取っつきにくいこと、ある程度はコマンドを覚える必要があること、そして卒業した後にあまり使う機会がないということが挙げられる。私は執筆にとにかく集中できるという理由で \LaTeX を使っているが、個人の好みを押しつけるつもりはない。
+この文章は、自分自身と、初めて修士論文や卒業論文を\LaTeX で書く人のために、\LaTeX の使い方を何度もググる必要がないようにまとめた文章である。論文としての書き方は厳密に正しくはないので注意してほしい。
 
-この文章は、修士論文と卒業論文を\LaTeX で書く人のために、\LaTeX の使い方を何度もググる必要がないようにまとめた文章である。論文としての書き方は厳密に正しくはないので注意してほしい。
+\section{講習会について}
 
-講習前の準備として、README.md に書かれた準備は完了しただろうか。ここからは、準備が完了したことを前提に話を進めていくことにする。
+講習会が開始する前に、README.md を読んで\LaTeX のインストールを完了させて欲しい。インストールには時間がかかるため、講習中にインストールを完了させるのは難しいだろう。講習会を聞いて、LaTeXが難しそうならWordで書くのも個人的には有りだと思う。とにかく、自分に適した快適な執筆環境が構築できれば幸いである。
 
-論文の編集は Visual Studio Code (エディタ) + LaTeX Workshop (Visual Code内の拡張機能) を使うと便利である。Visual Studio Codeの設定ファイル (User Settings) に以下のコードを書いておけば、ファイルを編集し保存する度に自動的にコンパイル(文字列からPDFファイルに変換する作業)される。ちなみに、ptex2pdfを2度実行しているのは目次や図表や参考文献などのリンク(番号)を2度目で生成しているからである。
-\begin{verbatim}
-"latex-workshop.latex.tools": [
-    {
-        "name": "ptex2pdf",
-        "command": "ptex2pdf",
-        "args": [
-            "-l",
-            "-ot",
-            "-kanji=utf8",
-            "-synctex=1",
-            "-interaction=nonstopmode",
-            "-shell-escape",
-            "%DOCFILE%"
-        ]
-    }
-],
-"latex-workshop.latex.recipes": [
-    {
-        "name": "ptex2pdf",
-        "tools": [
-            "ptex2pdf",
-            "ptex2pdf"
-        ]
-    }
-],
-\end{verbatim}
+\section{コンパイルとPDFファイルの閲覧}
+\LaTeX における論文の編集は Visual Studio Code (エディタ) + LaTeX Workshop (Visual Code内の拡張機能) ~\cite{latex_workshop}を使うと便利である。以下、この組み合わせで執筆と閲覧をしていくことを前提とする。
 
-必須ではないが、Windowsユーザーの方は、PDFビューア(表示用ツール)にSumatraPDFを使うことを強くお勧めする。これは、コンパイルするたびに更新されるPDFファイルを自動的に更新して表示してくれるものである。Visual Studio Code内のブラウザでも構わない。
-だが、Adobe Readerだけは絶対に使ってはならない。Adobe ReaderはPDFファイルを読み取り専用にするので、コンパイルが出来なくなる。
-印刷するときのみ、Adobe Readerを使うようにしよう。
+ここでのコンパイルとは、テキスト情報を\LaTeX の文法に従ってPDFファイルに変換することを指す。\LaTeX は一種のプログラミング言語なので、言語仕様通りに書くことで、PDFファイルを作ることが出来る。
+このドキュメントの最新版をcloneした人は、Visual Studio Codeの設定ファイル(.vscodeディレクトリ内のsettings.jsonファイル)にコンパイルを行うための推奨する設定を書いておいたので、気になる人は確認しておこう。
 
-Visual Studio Code と SumatraPDFの組み合わせでは、SumatraPDFのオプションの逆順検索コマンドラインの設定で、\verb|"C:\Program Files\Microsoft VS Code\code.exe" -g "%f:%l"|などと書いておくと、PDFファイルの文章をクリックするとテキストファイルの元の文章の場所に飛ぶことができる。なお、\verb|code.exe|のパスは上記の限りではないので注意されたし。
+コンパイルされたPDFファイルは、Visual Studio Code内の表示ツールで閲覧することができる。
+執筆中にはAdobe Readerは絶対に使ってはならない。Adobe ReaderはPDFファイルを読み取り専用にするのでコンパイルが出来なくなる。
+印刷するときのみ、Adobe Readerを使おう。
 
-bibtexを使う場合は \verb|pbibtex -kanji=utf8 filename| のようにコマンドを叩く。\verb|.tex| は必要ない。
+\section{自分が編集するファイル}
+このファイルと同じディレクトリに私がお勧めする設定は網羅した \verb|my_thesis.tex| というファイルを用意した。これを修正し論文を書き始めると良いだろう。
 
-\section*{講習会について}
+\section{著者について}
 
-講習会が開始する前に、README.md を読んで\LaTeX のインストールが完了していることを前提にしている。インストールには時間がかかるため、講習中にインストールを完了させるのは難しいだろう。講習会でよく質問して、よく理解して、LaTeXが難しそうならWordで書くのも個人的には有りだと思う。とにかく、自分に適した快適な執筆環境が構築できれば幸いである。
+吉本 雅浩 (岐阜大学 教育学部) 質問は yoshimoto@onsanai.com からメールで。
 
-\section*{このファイルについて}
-このファイルには、私がお勧めする設定は網羅している。不要なところを削除するなどして、論文を書き始めて欲しい。
-
-\section*{著者について}
-
-吉本 雅浩 (岐阜大学 教育学部) yoshimoto@onsanai.com
-
-\section*{ライセンス}
+\section{ライセンス}
 
 GNU General Public License (GNU GPL)
 
 \chapter{特殊文字・記号について}
-\section{メタ文字}
-\LaTeX のメタ文字は以下の13種。これらは文中で直接使うことができない。
+\section{メタ文字\label{meta}}
+\LaTeX のメタ文字は以下の13種。これらは文中で直接使うことができない。コンパイルが出来ないトラブルの90\%以上は、このメタ文字を文章中に入れてしまったことが原因である。
 \begin{verbatim}
 #, $, %, &, ~, _, ^, \, {, }, >, <, |, ¥
 \end{verbatim}
@@ -600,6 +570,8 @@ PDFファイルをAdobe readerなどで開いてはいないだろうか。Adobe
 \listoffigures %図のリスト
 
 \begin{thebibliography}{99}
+\bibitem{latex_workshop}
+\url{https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop}
 \bibitem{Yoshimoto:2017ufm} 
   M.~Yoshimoto, T.~Nakano, R.~Komatani and H.~Kawahara,
   ``Hyper-track selector nuclear emulsion readout system aimed at scanning an area of one thousand square meters,''
