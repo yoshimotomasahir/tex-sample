@@ -41,4 +41,5 @@
         }
     ],
     "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.latex.clean.subfolder.enabled": true,
 }
