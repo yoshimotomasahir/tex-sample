@@ -43,6 +43,10 @@ VSCodeのインストール
 brew cask install visual-studio-code
 ```
 
+# TexWorksでスペルチェックを使う方法
+
+https://texwiki.texjp.org/?TeXworks%2F%E8%A8%AD%E5%AE%9A#ycb12d64
+
 # 講習会の内容
 
 以下の内容を予定している。
