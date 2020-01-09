@@ -472,14 +472,19 @@ $\mu, \nu, \xi, o, \pi, \rho, \sigma, \tau, \upsilon, \phi, \chi, \psi, \omega, 
 7 & 8 & -9
 \end{array}
 \end{equation}
-\section{括弧}
+\section{括弧(かっこ)}
 \verb|\left \right|を使うと\verb|[ ], ( ), { }, | $|\;|$等で囲まれる数式を正しく囲むことができる。
+\verb|{ }|は数式内でのメタ文字なので、数式内では\verb|\{ \}|と書く。
 \begin{verbatim}
-\begin{equation}
  \left [ \frac{0}{1} \right ] + [\frac{0}{1}]
-\end{equation}
+ \left ( \frac{0}{1} \right ) + (\frac{0}{1})
+ \left \{ \frac{0}{1} \right \} + \{\frac{0}{1}\}
+ \left | \frac{0}{1} \right | + |\frac{0}{1}|
 \end{verbatim}
 \begin{equation}\left [ \frac{0}{1} \right ] + [\frac{0}{1}]\end{equation}
+\begin{equation}\left ( \frac{0}{1} \right ) + (\frac{0}{1})\end{equation}
+\begin{equation}\left \{ \frac{0}{1} \right \} + \{\frac{0}{1}\}\end{equation}
+\begin{equation}\left | \frac{0}{1} \right | + |\frac{0}{1}|\end{equation}
 \section{数式中の空白や改行}
 数式モードでは全ての空白は無視されるので、明示的に空白コマンドを使う。改行して=でそろえたい場合は\verb|\begin{split}\end{split}|を使い、\verb|\\|で改行、\verb|&|でそろえる場所を指定する。
 \begin{verbatim}
